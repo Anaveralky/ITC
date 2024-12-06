@@ -1,1 +1,63 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #333;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #FF1493; /* Pink color for the title */
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    color: #f0f0f0;
+    margin-top: 10px;
+}
+
+.btn-container {
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 20px;
+    background-color: #FF1493; /* Pink color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 10px;
+    width: 250px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #FF66B2; /* Darker pink on hover */
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #bbb;
+}
 
