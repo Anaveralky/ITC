@@ -1,6 +1,7 @@
+/* Basic Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: black;
+    font-family: Arial, sans-serif;
+    background-color: #282c34;
     color: white;
     margin: 0;
     padding: 0;
@@ -8,93 +9,45 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    box-sizing: border-box;
     flex-direction: column;
-    overflow-y: auto;
 }
+
 .container {
     background-color: #333;
-    padding: 40px;
-    border-radius: 12px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    width: 80%;
     max-width: 800px;
+    width: 100%;
 }
-h1 {
-    font-size: 36px;
-    color: #FF1493;
-    margin-bottom: 20px;
-}
-p {
-    font-size: 18px;
-    color: #f0f0f0;
-    margin-top: 10px;
-}
-nav {
-    margin-top: 20px;
-}
-nav a {
-    padding: 12px 20px;
+
+button {
+    padding: 10px 20px;
     background-color: #FF1493;
     color: white;
     border: none;
-    cursor: pointer;
-    font-size: 18px;
     border-radius: 5px;
-    margin: 5px;
-    text-decoration: none;
-    display: inline-block;
+    cursor: pointer;
 }
-nav a:hover {
+
+button:hover {
     background-color: #FF66B2;
 }
-.project-container {
-    display: none;
-}
-.footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #bbb;
-}
-.project-container input, .project-container button {
-    width: 100%;
+
+input, select {
     padding: 10px;
     font-size: 16px;
-    margin-bottom: 15px;
-    border: 1px solid #FF1493;
+    margin: 10px 0;
     border-radius: 5px;
+    border: 1px solid #FF1493;
     background-color: #222;
-    color: #fff;
-    box-sizing: border-box;
+    color: white;
+    width: 100%;
 }
-.project-container .result {
+
+.result {
     margin-top: 20px;
     font-weight: bold;
-    font-size: 18px;
     color: #f0f0f0;
-}
-#introScreen {
-    background-color: #222;
-    color: #fff;
-    padding: 40px;
-    text-align: center;
-    border-radius: 12px;
-    width: 80%;
-    max-width: 800px;
-}
-#introScreen h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-#introScreen button {
-    background-color: #FF1493;
-    color: white;
-    padding: 15px 25px;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-#introScreen button:hover {
-    background-color: #FF66B2;
 }
