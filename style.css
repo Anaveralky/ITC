@@ -1,4 +1,3 @@
-/* Global Styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: black;
@@ -10,8 +9,9 @@ body {
     align-items: center;
     height: 100vh;
     box-sizing: border-box;
+    flex-direction: column;
+    overflow-y: auto;
 }
-
 .container {
     background-color: #333;
     padding: 40px;
@@ -19,45 +19,82 @@ body {
     text-align: center;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     width: 80%;
-    max-width: 600px;
+    max-width: 800px;
 }
-
 h1 {
     font-size: 36px;
-    color: #FF1493; /* Pink color for the title */
+    color: #FF1493;
     margin-bottom: 20px;
 }
-
 p {
     font-size: 18px;
     color: #f0f0f0;
     margin-top: 10px;
 }
-
-.btn-container {
-    margin-top: 30px;
+nav {
+    margin-top: 20px;
 }
-
-.btn {
+nav a {
     padding: 12px 20px;
-    background-color: #FF1493; /* Pink color */
+    background-color: #FF1493;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 18px;
     border-radius: 5px;
-    margin: 10px;
-    width: 250px;
-    transition: background-color 0.3s ease;
+    margin: 5px;
+    text-decoration: none;
+    display: inline-block;
 }
-
-.btn:hover {
-    background-color: #FF66B2; /* Darker pink on hover */
+nav a:hover {
+    background-color: #FF66B2;
 }
-
+.project-container {
+    display: none;
+}
 .footer {
     margin-top: 30px;
     font-size: 14px;
     color: #bbb;
 }
-
+.project-container input, .project-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #FF1493;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    box-sizing: border-box;
+}
+.project-container .result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #f0f0f0;
+}
+#introScreen {
+    background-color: #222;
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 800px;
+}
+#introScreen h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+#introScreen button {
+    background-color: #FF1493;
+    color: white;
+    padding: 15px 25px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#introScreen button:hover {
+    background-color: #FF66B2;
+}
