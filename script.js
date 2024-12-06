@@ -1,9 +1,11 @@
+// Show the main content after the introduction screen
 function startProjects() {
     document.getElementById('introScreen').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
     showProject('conversion');  // Show Unit Converter as the default project
 }
 
+// Show the selected project
 function showProject(projectId) {
     const projects = document.querySelectorAll('.project-container');
     projects.forEach(project => {
@@ -34,42 +36,25 @@ function convertDistance() {
     let result;
 
     if (unit === 'Meters') {
-        result = value * 3.28084 + " feet";
+        result = value * 3.28084 + " Feet";
     } else {
-        result = value / 3.28084 + " meters";
+        result = value / 3.28084 + " Meters";
     }
 
     document.getElementById('distanceResult').innerHTML = `Result: ${result}`;
 }
 
-// Income Tax Calculation
+// Tax calculation (simple example)
 function calculateTax() {
     let income = parseFloat(document.getElementById('income').value);
-    let taxAmount = 0;
-
-    if (income <= 250000) {
-        taxAmount = 0;
-    } else if (income <= 400000) {
-        taxAmount = (income - 250000) * 0.2;
-    } else if (income <= 800000) {
-        taxAmount = (income - 400000) * 0.25 + 30000;
-    } else if (income <= 2000000) {
-        taxAmount = (income - 800000) * 0.3 + 120000;
-    } else if (income <= 8000000) {
-        taxAmount = (income - 2000000) * 0.32 + 500000;
-    } else {
-        taxAmount = (income - 8000000) * 0.35 + 2000000;
-    }
-
-    document.getElementById('result').innerHTML = `Income Tax: ₱${taxAmount.toFixed(2)}`;
+    let tax = income * 0.2;  // Simple 20% tax rate
+    document.getElementById('result').innerHTML = `Your tax is: ₱${tax}`;
 }
 
-// Factorial, Sum, and Average calculation
+// Factorial, sum, and average calculation
 function calculate() {
     let n = parseInt(document.getElementById('number').value);
-    let factorial = 1;
-    let sum = 0;
-    let average = 0;
+    let factorial = 1, sum = 0, average;
 
     for (let i = 1; i <= n; i++) {
         factorial *= i;
@@ -80,54 +65,45 @@ function calculate() {
 
     document.getElementById('factorialResult').innerHTML = `Factorial: ${factorial}`;
     document.getElementById('sumResult').innerHTML = `Sum: ${sum}`;
-    document.getElementById('averageResult').innerHTML = `Average: ${average.toFixed(2)}`;
+    document.getElementById('averageResult').innerHTML = `Average: ${average}`;
 }
 
-// Payroll Management System
-let employeeList = [];
-
+// Payroll Management
+let payrollList = [];
 function addEmployee() {
-    let name = document.getElementById('empName').value;
-    let daysWorked = parseInt(document.getElementById('daysWorked').value);
+    let empName = document.getElementById('empName').value;
+    let daysWorked = parseFloat(document.getElementById('daysWorked').value);
     let dailyRate = parseFloat(document.getElementById('dailyRate').value);
     let deductionAmount = parseFloat(document.getElementById('deductionAmount').value);
 
     let grossPay = daysWorked * dailyRate;
     let netPay = grossPay - deductionAmount;
 
-    employeeList.push({
-        name: name,
-        daysWorked: daysWorked,
-        dailyRate: dailyRate,
-        grossPay: grossPay,
-        deductionAmount: deductionAmount,
-        netPay: netPay
-    });
+    payrollList.push({ empName, daysWorked, dailyRate, grossPay, deductionAmount, netPay });
 
-    updatePayrollTable();
+    displayPayroll();
 }
 
-function updatePayrollTable() {
-    let tableBody = document.getElementById('payrollTable').querySelector('tbody');
-    tableBody.innerHTML = '';
+function deleteEmployee() {
+    let lineNumber = parseInt(document.getElementById('lineNumberToDelete').value) - 1;
+    payrollList.splice(lineNumber, 1);
+    displayPayroll();
+}
 
-    employeeList.forEach((employee, index) => {
-        let row = document.createElement('tr');
+function displayPayroll() {
+    let tableBody = document.getElementById('payrollTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = '';
+    payrollList.forEach((emp, index) => {
+        let row = tableBody.insertRow();
         row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${employee.name}</td>
-            <td>${employee.daysWorked}</td>
-            <td>${employee.dailyRate.toFixed(2)}</td>
-            <td>${employee.grossPay.toFixed(2)}</td>
-            <td>${employee.deductionAmount.toFixed(2)}</td>
-            <td>${employee.netPay.toFixed(2)}</td>
-            <td><button onclick="deleteEmployee(${index})">Delete</button></td>
+            <td>${emp.empName}</td>
+            <td>${emp.daysWorked}</td>
+            <td>${emp.dailyRate}</td>
+            <td>${emp.grossPay}</td>
+            <td>${emp.deductionAmount}</td>
+            <td>${emp.netPay}</td>
+            <td><button onclick="deleteEmployee()">Delete</button></td>
         `;
-        tableBody.appendChild(row);
     });
-}
-
-function deleteEmployee(index) {
-    employeeList.splice(index, 1);
-    updatePayrollTable();
 }
