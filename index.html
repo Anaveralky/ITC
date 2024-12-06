@@ -4,7 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Princess Anaver Alcuizar's Projects</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .container {
+            background-color: #333;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 800px;
+        }
+        h1 {
+            font-size: 36px;
+            color: #FF1493;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #f0f0f0;
+            margin-top: 10px;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav a {
+            padding: 12px 20px;
+            background-color: #FF1493;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        nav a:hover {
+            background-color: #FF66B2;
+        }
+        .project-container {
+            display: none;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* Style for each project form */
+        .project-container input, .project-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 1px solid #FF1493;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+            box-sizing: border-box;
+        }
+        .project-container .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #f0f0f0;
+        }
+
+        /* Introduction Screen */
+        #introScreen {
+            background-color: #222;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 800px;
+        }
+        #introScreen h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        #introScreen button {
+            background-color: #FF1493;
+            color: white;
+            padding: 15px 25px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #introScreen button:hover {
+            background-color: #FF66B2;
+        }
+    </style>
 </head>
 <body>
 
@@ -112,6 +217,142 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Show the main content after the introduction screen
+        function startProjects() {
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            showProject('conversion');  // Show Unit Converter as the default project
+        }
+
+        // Show the selected project
+        function showProject(projectId) {
+            const projects = document.querySelectorAll('.project-container');
+            projects.forEach(project => {
+                project.style.display = 'none';
+            });
+            document.getElementById(projectId).style.display = 'block';
+        }
+
+        // Temperature conversion
+        function convertTemperature() {
+            let value = parseFloat(document.getElementById('tempInput').value);
+            let unit = document.getElementById('tempUnit').value;
+            let result;
+
+            if (unit === 'Celsius') {
+                result = (value * 9/5) + 32 + " °F";
+            } else {
+                result = (value - 32) * 5/9 + " °C";
+            }
+
+            document.getElementById('tempResult').innerHTML = `Result: ${result}`;
+        }
+
+        // Distance conversion
+        function convertDistance() {
+            let value = parseFloat(document.getElementById('distanceInput').value);
+            let unit = document.getElementById('distanceUnit').value;
+            let result;
+
+            if (unit === 'Meters') {
+                result = value * 3.28084 + " feet";
+            } else {
+                result = value / 3.28084 + " meters";
+            }
+
+            document.getElementById('distanceResult').innerHTML = `Result: ${result}`;
+        }
+
+        // Income Tax Calculation
+        function calculateTax() {
+            let income = parseFloat(document.getElementById('income').value);
+            let taxAmount = 0;
+
+            if (income <= 250000) {
+                taxAmount = 0;
+            } else if (income <= 400000) {
+                taxAmount = (income - 250000) * 0.2;
+            } else if (income <= 800000) {
+                taxAmount = (income - 400000) * 0.25 + 30000;
+            } else if (income <= 2000000) {
+                taxAmount = (income - 800000) * 0.3 + 120000;
+            } else if (income <= 8000000) {
+                taxAmount = (income - 2000000) * 0.32 + 500000;
+            } else {
+                taxAmount = (income - 8000000) * 0.35 + 2000000;
+            }
+
+            document.getElementById('result').innerHTML = `Income Tax: ₱${taxAmount.toFixed(2)}`;
+        }
+
+        // Factorial, Sum, and Average calculation
+        function calculate() {
+            let n = parseInt(document.getElementById('number').value);
+            let factorial = 1;
+            let sum = 0;
+            let average = 0;
+
+            for (let i = 1; i <= n; i++) {
+                factorial *= i;
+                sum += i;
+            }
+
+            average = sum / n;
+
+            document.getElementById('factorialResult').innerHTML = `Factorial: ${factorial}`;
+            document.getElementById('sumResult').innerHTML = `Sum: ${sum}`;
+            document.getElementById('averageResult').innerHTML = `Average: ${average.toFixed(2)}`;
+        }
+
+        // Payroll Management System
+        let employeeList = [];
+
+        function addEmployee() {
+            let name = document.getElementById('empName').value;
+            let daysWorked = parseInt(document.getElementById('daysWorked').value);
+            let dailyRate = parseFloat(document.getElementById('dailyRate').value);
+            let deductionAmount = parseFloat(document.getElementById('deductionAmount').value);
+
+            let grossPay = daysWorked * dailyRate;
+            let netPay = grossPay - deductionAmount;
+
+            employeeList.push({
+                name: name,
+                daysWorked: daysWorked,
+                dailyRate: dailyRate,
+                grossPay: grossPay,
+                deductionAmount: deductionAmount,
+                netPay: netPay
+            });
+
+            updatePayrollTable();
+        }
+
+        function updatePayrollTable() {
+            let tableBody = document.getElementById('payrollTable').querySelector('tbody');
+            tableBody.innerHTML = '';
+
+            employeeList.forEach((employee, index) => {
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.daysWorked}</td>
+                    <td>${employee.dailyRate.toFixed(2)}</td>
+                    <td>${employee.grossPay.toFixed(2)}</td>
+                    <td>${employee.deductionAmount.toFixed(2)}</td>
+                    <td>${employee.netPay.toFixed(2)}</td>
+                    <td><button onclick="deleteEmployee(${index})">Delete</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function deleteEmployee(index) {
+            employeeList.splice(index, 1);
+            updatePayrollTable();
+        }
+    </script>
 </body>
 </html>
