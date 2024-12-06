@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter</title>
+    <title>Princess Anaver Alcuizar's Projects</title>
     <style>
-        /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
             background-color: black;
@@ -17,187 +16,343 @@
             align-items: center;
             height: 100vh;
             box-sizing: border-box;
+            flex-direction: column;
+            overflow-y: auto;
         }
-
         .container {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            width: 350px;
-            text-align: center;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #f0f0f0;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            font-size: 16px;
-            color: #ddd;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            font-size: 16px;
-            border: 1px solid #444;
             background-color: #333;
-            color: #fff;
-            border-radius: 4px;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 800px;
         }
-
-        button {
-            padding: 12px;
-            margin-top: 15px;
-            background-color: #FF1493; /* Pink color */
+        h1 {
+            font-size: 36px;
+            color: #FF1493;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #f0f0f0;
+            margin-top: 10px;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav a {
+            padding: 12px 20px;
+            background-color: #FF1493;
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        nav a:hover {
+            background-color: #FF66B2;
+        }
+        .project-container {
+            display: none;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* Style for each project form */
+        .project-container input, .project-container button {
             width: 100%;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 1px solid #FF1493;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+            box-sizing: border-box;
         }
-
-        button:hover {
-            background-color: #FF66B2; /* Darker pink on hover */
-        }
-
-        .result {
+        .project-container .result {
             margin-top: 20px;
             font-weight: bold;
             font-size: 18px;
             color: #f0f0f0;
         }
 
-        .result p {
-            margin: 0;
+        /* Introduction Screen */
+        #introScreen {
+            background-color: #222;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 800px;
         }
-
-        .error {
-            color: #FF6347; /* Red color for error */
-            font-size: 16px;
+        #introScreen h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        #introScreen button {
+            background-color: #FF1493;
+            color: white;
+            padding: 15px 25px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #introScreen button:hover {
+            background-color: #FF66B2;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Unit Converter</h2>
-        
-        <!-- Temperature Conversion: Celsius to Fahrenheit / Fahrenheit to Celsius -->
-        <div>
-            <label for="tempInput">Temperature:</label>
-            <input type="number" id="tempInput" placeholder="Enter value" />
-            
-            <label for="tempUnit">Convert From:</label>
-            <select id="tempUnit">
-                <option value="Celsius">Celsius</option>
-                <option value="Fahrenheit">Fahrenheit</option>
-            </select>
+    <!-- Introduction Screen -->
+    <div id="introScreen" class="container">
+        <h2>Welcome to Princess Anaver Alcuizar's Projects</h2>
+        <p>Explore my final project work below. You can calculate income taxes, convert units, and manage payroll, among other fun and useful features!</p>
+        <button onclick="startProjects()">Start Exploring Projects</button>
+    </div>
 
-            <button onclick="convertTemperature()">Convert</button>
+    <!-- Main Content (hidden initially) -->
+    <div id="mainContent" style="display: none;">
+        <div class="container">
+            <h1>Welcome to Princess Anaver Alcuizar's Projects</h1>
+            <p>Explore my final project work by selecting the project below:</p>
 
-            <div id="tempResult" class="result"></div>
-            <div id="tempError" class="error"></div>
+            <!-- Navigation Links for Projects -->
+            <nav>
+                <a href="javascript:void(0);" onclick="showProject('conversion')">Unit Converter</a>
+                <a href="javascript:void(0);" onclick="showProject('incometax')">Income Tax Calculator</a>
+                <a href="javascript:void(0);" onclick="showProject('factorial')">Factorial, Sum, and Average</a>
+                <a href="javascript:void(0);" onclick="showProject('payroll')">Payroll Management</a>
+            </nav>
         </div>
 
-        <hr style="margin: 20px 0; border: 1px solid #444;">
+        <!-- Unit Converter Project -->
+        <div id="conversion" class="project-container">
+            <h2>Unit Converter</h2>
+            <div>
+                <label for="tempInput">Temperature:</label>
+                <input type="number" id="tempInput" placeholder="Enter value" />
+                <label for="tempUnit">Convert From:</label>
+                <select id="tempUnit">
+                    <option value="Celsius">Celsius</option>
+                    <option value="Fahrenheit">Fahrenheit</option>
+                </select>
+                <button onclick="convertTemperature()">Convert</button>
+                <div id="tempResult" class="result"></div>
+            </div>
 
-        <!-- Distance Conversion: Meters to Feet / Feet to Meters -->
-        <div>
-            <label for="distanceInput">Distance:</label>
-            <input type="number" id="distanceInput" placeholder="Enter value" />
-            
-            <label for="distanceUnit">Convert From:</label>
-            <select id="distanceUnit">
-                <option value="Meters">Meters</option>
-                <option value="Feet">Feet</option>
-            </select>
-
-            <button onclick="convertDistance()">Convert</button>
-
-            <div id="distanceResult" class="result"></div>
-            <div id="distanceError" class="error"></div>
+            <div>
+                <label for="distanceInput">Distance:</label>
+                <input type="number" id="distanceInput" placeholder="Enter value" />
+                <label for="distanceUnit">Convert From:</label>
+                <select id="distanceUnit">
+                    <option value="Meters">Meters</option>
+                    <option value="Feet">Feet</option>
+                </select>
+                <button onclick="convertDistance()">Convert</button>
+                <div id="distanceResult" class="result"></div>
+            </div>
         </div>
 
-        <hr style="margin: 20px 0; border: 1px solid #444;">
+        <!-- Income Tax Calculator -->
+        <div id="incometax" class="project-container">
+            <h2>Income Tax Calculator</h2>
+            <label for="income">Enter your taxable income (₱):</label>
+            <input type="number" id="income" placeholder="Enter amount in pesos" />
+            <button onclick="calculateTax()">Calculate Tax</button>
+            <div id="result" class="result"></div>
+        </div>
 
-        <!-- Reset Button -->
-        <button onclick="resetInputs()">Reset</button>
+        <!-- Factorial, Sum, and Average Project -->
+        <div id="factorial" class="project-container">
+            <h2>Factorial, Sum, and Average of First N Natural Numbers</h2>
+            <label for="number">Enter a positive integer (N):</label>
+            <input type="number" id="number" placeholder="Enter a number" min="1" />
+            <button onclick="calculate()">Calculate</button>
+            <div id="factorialResult" class="result"></div>
+            <div id="sumResult" class="result"></div>
+            <div id="averageResult" class="result"></div>
+        </div>
+
+        <!-- Payroll Management System -->
+        <div id="payroll" class="project-container">
+            <h2>Payroll Management System</h2>
+            <input type="text" id="empName" placeholder="Enter Employee Name" />
+            <input type="number" id="daysWorked" placeholder="Enter Days Worked" min="1" />
+            <input type="number" id="dailyRate" placeholder="Enter Daily Rate" min="1" />
+            <input type="number" id="deductionAmount" placeholder="Enter Deduction Amount" min="0" />
+            <button onclick="addEmployee()">Add Employee</button>
+            <h3>Payroll List</h3>
+            <table id="payrollTable">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Employee Name</th>
+                        <th>Days Worked</th>
+                        <th>Daily Rate</th>
+                        <th>Gross Pay</th>
+                        <th>Deduction Amount</th>
+                        <th>Net Pay</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <h3>Delete Employee</h3>
+            <input type="number" id="lineNumberToDelete" placeholder="Enter Line Number to Delete" min="1" />
+            <button onclick="deleteEmployee()">Delete Employee</button>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 Princess Anaver Alcuizar. All rights reserved.</p>
+        </div>
     </div>
 
     <script>
-        // Temperature conversion function
+        // Show the main content after the introduction screen
+        function startProjects() {
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            showProject('conversion');  // Show Unit Converter as the default project
+        }
+
+        // Show the selected project
+        function showProject(projectId) {
+            const projects = document.querySelectorAll('.project-container');
+            projects.forEach(project => {
+                project.style.display = 'none';
+            });
+            document.getElementById(projectId).style.display = 'block';
+        }
+
+        // Temperature conversion
         function convertTemperature() {
             let value = parseFloat(document.getElementById('tempInput').value);
             let unit = document.getElementById('tempUnit').value;
-            let resultText = '';
-            let errorText = '';
-
-            if (isNaN(value)) {
-                errorText = 'Please enter a valid number for temperature.';
-                document.getElementById('tempError').innerText = errorText;
-                document.getElementById('tempResult').innerHTML = '';
-                return;
-            }
+            let result;
 
             if (unit === 'Celsius') {
-                let fahrenheit = (value * 9/5) + 32;
-                resultText = `${value} °C = ${fahrenheit.toFixed(2)} °F`;
-            } else if (unit === 'Fahrenheit') {
-                let celsius = (value - 32) * 5/9;
-                resultText = `${value} °F = ${celsius.toFixed(2)} °C`;
+                result = (value * 9/5) + 32 + " °F";
+            } else {
+                result = (value - 32) * 5/9 + " °C";
             }
 
-            document.getElementById('tempResult').innerHTML = resultText;
-            document.getElementById('tempError').innerText = ''; // Clear error message
+            document.getElementById('tempResult').innerHTML = `Result: ${result}`;
         }
 
-        // Distance conversion function
+        // Distance conversion
         function convertDistance() {
             let value = parseFloat(document.getElementById('distanceInput').value);
             let unit = document.getElementById('distanceUnit').value;
-            let resultText = '';
-            let errorText = '';
-
-            if (isNaN(value)) {
-                errorText = 'Please enter a valid number for distance.';
-                document.getElementById('distanceError').innerText = errorText;
-                document.getElementById('distanceResult').innerHTML = '';
-                return;
-            }
+            let result;
 
             if (unit === 'Meters') {
-                let feet = value * 3.28084;
-                resultText = `${value} M = ${feet.toFixed(2)} ft`;
-            } else if (unit === 'Feet') {
-                let meters = value / 3.28084;
-                resultText = `${value} ft = ${meters.toFixed(2)} M`;
+                result = value * 3.28084 + " feet";
+            } else {
+                result = value / 3.28084 + " meters";
             }
 
-            document.getElementById('distanceResult').innerHTML = resultText;
-            document.getElementById('distanceError').innerText = ''; // Clear error message
+            document.getElementById('distanceResult').innerHTML = `Result: ${result}`;
         }
 
-        // Reset the input fields and results
-        function resetInputs() {
-            document.getElementById('tempInput').value = '';
-            document.getElementById('distanceInput').value = '';
-            document.getElementById('tempResult').innerHTML = '';
-            document.getElementById('distanceResult').innerHTML = '';
-            document.getElementById('tempError').innerText = '';
-            document.getElementById('distanceError').innerText = '';
-            document.getElementById('tempUnit').value = 'Celsius';
-            document.getElementById('distanceUnit').value = 'Meters';
+        // Income Tax Calculation
+        function calculateTax() {
+            let income = parseFloat(document.getElementById('income').value);
+            let taxAmount = 0;
+
+            if (income <= 250000) {
+                taxAmount = 0;
+            } else if (income <= 400000) {
+                taxAmount = (income - 250000) * 0.2;
+            } else if (income <= 800000) {
+                taxAmount = (income - 400000) * 0.25 + 30000;
+            } else if (income <= 2000000) {
+                taxAmount = (income - 800000) * 0.3 + 120000;
+            } else if (income <= 8000000) {
+                taxAmount = (income - 2000000) * 0.32 + 500000;
+            } else {
+                taxAmount = (income - 8000000) * 0.35 + 2000000;
+            }
+
+            document.getElementById('result').innerHTML = `Income Tax: ₱${taxAmount.toFixed(2)}`;
+        }
+
+        // Factorial, Sum, and Average calculation
+        function calculate() {
+            let n = parseInt(document.getElementById('number').value);
+            let factorial = 1;
+            let sum = 0;
+            let average = 0;
+
+            for (let i = 1; i <= n; i++) {
+                factorial *= i;
+                sum += i;
+            }
+
+            average = sum / n;
+
+            document.getElementById('factorialResult').innerHTML = `Factorial: ${factorial}`;
+            document.getElementById('sumResult').innerHTML = `Sum: ${sum}`;
+            document.getElementById('averageResult').innerHTML = `Average: ${average.toFixed(2)}`;
+        }
+
+        // Payroll Management System
+        let employeeList = [];
+
+        function addEmployee() {
+            let name = document.getElementById('empName').value;
+            let daysWorked = parseInt(document.getElementById('daysWorked').value);
+            let dailyRate = parseFloat(document.getElementById('dailyRate').value);
+            let deductionAmount = parseFloat(document.getElementById('deductionAmount').value);
+
+            let grossPay = daysWorked * dailyRate;
+            let netPay = grossPay - deductionAmount;
+
+            employeeList.push({
+                name: name,
+                daysWorked: daysWorked,
+                dailyRate: dailyRate,
+                grossPay: grossPay,
+                deductionAmount: deductionAmount,
+                netPay: netPay
+            });
+
+            updatePayrollTable();
+        }
+
+        function updatePayrollTable() {
+            let tableBody = document.getElementById('payrollTable').querySelector('tbody');
+            tableBody.innerHTML = '';
+
+            employeeList.forEach((employee, index) => {
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.daysWorked}</td>
+                    <td>${employee.dailyRate.toFixed(2)}</td>
+                    <td>${employee.grossPay.toFixed(2)}</td>
+                    <td>${employee.deductionAmount.toFixed(2)}</td>
+                    <td>${employee.netPay.toFixed(2)}</td>
+                    <td><button onclick="deleteEmployee(${index})">Delete</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function deleteEmployee(index) {
+            employeeList.splice(index, 1);
+            updatePayrollTable();
         }
     </script>
-
 </body>
 </html>
