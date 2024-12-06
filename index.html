@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Princess Anaver Alcuizar Final Project</title>
+    <title>Welcome to Princess Anaver Alcuizar's Projects</title>
     <style>
         /* Global Styles */
         body {
@@ -41,39 +41,55 @@
             margin-top: 10px;
         }
 
-        .footer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #bbb;
+        .btn-container {
+            margin-top: 30px;
         }
 
-        /* Button */
         .btn {
-            margin-top: 30px;
             padding: 12px 20px;
-            background-color: #FF1493;
+            background-color: #FF1493; /* Pink color */
             color: white;
             border: none;
             cursor: pointer;
             font-size: 18px;
             border-radius: 5px;
+            margin: 10px;
+            width: 250px;
             transition: background-color 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #FF66B2;
+            background-color: #FF66B2; /* Darker pink on hover */
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Welcome to My Final Project</h1>
-        <p>Princess Anaver Alcuizar</p>
-        <p>Conversion (Celsius to Fahrenheit, Fahrenheit to Celsius, Meters to Feet, Feet to Meters)</p>
+        <h1>Welcome to Princess Anaver Alcuizar's Projects</h1>
+        <p>Explore my final project work by clicking the buttons below:</p>
 
-        <!-- Button to direct users to another page or project (optional) -->
-        <button class="btn" onclick="window.location.href='https://www.example.com';">Explore More</button>
+        <!-- Buttons for different projects -->
+        <div class="btn-container">
+            <a href="conversion.html">
+                <button class="btn">Conversion</button>
+            </a>
+            <a href="incometax.html">
+                <button class="btn">Income Tax Calculator</button>
+            </a>
+            <a href="factorial.html">
+                <button class="btn">Factorial</button>
+            </a>
+            <a href="payroll.html">
+                <button class="btn">Simple Payroll</button>
+            </a>
+        </div>
 
         <div class="footer">
             <p>&copy; 2024 Princess Anaver Alcuizar. All rights reserved.</p>
@@ -82,3 +98,4 @@
 
 </body>
 </html>
+
