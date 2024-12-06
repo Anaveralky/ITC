@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Princess Anaver Alcuizar's Projects</title>
+    <title>Unit Converter</title>
     <style>
         /* Global Styles */
         body {
@@ -20,82 +20,184 @@
         }
 
         .container {
-            background-color: #333;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            width: 80%;
-            max-width: 600px;
+            width: 350px;
+            text-align: center;
         }
 
-        h1 {
-            font-size: 36px;
-            color: #FF1493; /* Pink color for the title */
+        h2 {
             margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 18px;
+            font-size: 24px;
             color: #f0f0f0;
+        }
+
+        label {
+            display: block;
             margin-top: 10px;
+            font-size: 16px;
+            color: #ddd;
         }
 
-        .btn-container {
-            margin-top: 30px;
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+            border-radius: 4px;
         }
 
-        .btn {
-            padding: 12px 20px;
+        button {
+            padding: 12px;
+            margin-top: 15px;
             background-color: #FF1493; /* Pink color */
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            margin: 10px;
-            width: 250px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 4px;
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
+        button:hover {
             background-color: #FF66B2; /* Darker pink on hover */
         }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #bbb;
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #f0f0f0;
+        }
+
+        .result p {
+            margin: 0;
+        }
+
+        .error {
+            color: #FF6347; /* Red color for error */
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Welcome to Princess Anaver Alcuizar's Projects</h1>
-        <p>Explore my final project work by clicking the buttons below:</p>
+        <h2>Unit Converter</h2>
+        
+        <!-- Temperature Conversion: Celsius to Fahrenheit / Fahrenheit to Celsius -->
+        <div>
+            <label for="tempInput">Temperature:</label>
+            <input type="number" id="tempInput" placeholder="Enter value" />
+            
+            <label for="tempUnit">Convert From:</label>
+            <select id="tempUnit">
+                <option value="Celsius">Celsius</option>
+                <option value="Fahrenheit">Fahrenheit</option>
+            </select>
 
-        <!-- Buttons for different projects -->
-        <div class="btn-container">
-            <a href="conversion.html">
-                <button class="btn">Conversion</button>
-            </a>
-            <a href="incometax.html">
-                <button class="btn">Income Tax Calculator</button>
-            </a>
-            <a href="factorial.html">
-                <button class="btn">Factorial</button>
-            </a>
-            <a href="payroll.html">
-                <button class="btn">Simple Payroll</button>
-            </a>
+            <button onclick="convertTemperature()">Convert</button>
+
+            <div id="tempResult" class="result"></div>
+            <div id="tempError" class="error"></div>
         </div>
 
-        <div class="footer">
-            <p>&copy; 2024 Princess Anaver Alcuizar. All rights reserved.</p>
+        <hr style="margin: 20px 0; border: 1px solid #444;">
+
+        <!-- Distance Conversion: Meters to Feet / Feet to Meters -->
+        <div>
+            <label for="distanceInput">Distance:</label>
+            <input type="number" id="distanceInput" placeholder="Enter value" />
+            
+            <label for="distanceUnit">Convert From:</label>
+            <select id="distanceUnit">
+                <option value="Meters">Meters</option>
+                <option value="Feet">Feet</option>
+            </select>
+
+            <button onclick="convertDistance()">Convert</button>
+
+            <div id="distanceResult" class="result"></div>
+            <div id="distanceError" class="error"></div>
         </div>
+
+        <hr style="margin: 20px 0; border: 1px solid #444;">
+
+        <!-- Reset Button -->
+        <button onclick="resetInputs()">Reset</button>
     </div>
+
+    <script>
+        // Temperature conversion function
+        function convertTemperature() {
+            let value = parseFloat(document.getElementById('tempInput').value);
+            let unit = document.getElementById('tempUnit').value;
+            let resultText = '';
+            let errorText = '';
+
+            if (isNaN(value)) {
+                errorText = 'Please enter a valid number for temperature.';
+                document.getElementById('tempError').innerText = errorText;
+                document.getElementById('tempResult').innerHTML = '';
+                return;
+            }
+
+            if (unit === 'Celsius') {
+                let fahrenheit = (value * 9/5) + 32;
+                resultText = `${value} °C = ${fahrenheit.toFixed(2)} °F`;
+            } else if (unit === 'Fahrenheit') {
+                let celsius = (value - 32) * 5/9;
+                resultText = `${value} °F = ${celsius.toFixed(2)} °C`;
+            }
+
+            document.getElementById('tempResult').innerHTML = resultText;
+            document.getElementById('tempError').innerText = ''; // Clear error message
+        }
+
+        // Distance conversion function
+        function convertDistance() {
+            let value = parseFloat(document.getElementById('distanceInput').value);
+            let unit = document.getElementById('distanceUnit').value;
+            let resultText = '';
+            let errorText = '';
+
+            if (isNaN(value)) {
+                errorText = 'Please enter a valid number for distance.';
+                document.getElementById('distanceError').innerText = errorText;
+                document.getElementById('distanceResult').innerHTML = '';
+                return;
+            }
+
+            if (unit === 'Meters') {
+                let feet = value * 3.28084;
+                resultText = `${value} M = ${feet.toFixed(2)} ft`;
+            } else if (unit === 'Feet') {
+                let meters = value / 3.28084;
+                resultText = `${value} ft = ${meters.toFixed(2)} M`;
+            }
+
+            document.getElementById('distanceResult').innerHTML = resultText;
+            document.getElementById('distanceError').innerText = ''; // Clear error message
+        }
+
+        // Reset the input fields and results
+        function resetInputs() {
+            document.getElementById('tempInput').value = '';
+            document.getElementById('distanceInput').value = '';
+            document.getElementById('tempResult').innerHTML = '';
+            document.getElementById('distanceResult').innerHTML = '';
+            document.getElementById('tempError').innerText = '';
+            document.getElementById('distanceError').innerText = '';
+            document.getElementById('tempUnit').value = 'Celsius';
+            document.getElementById('distanceUnit').value = 'Meters';
+        }
+    </script>
 
 </body>
 </html>
-
