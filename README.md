@@ -35,5 +35,5 @@ To run this project on your local machine, follow the steps below:
 
 1. **Clone this repository**:
    ```bash
-   git clone https://github.com/username/princess-projects.git
+   git clone https://anaveralky.github.io/ITC/
 
